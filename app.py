@@ -31,7 +31,7 @@ def main():
     brand_id = brand_tag.get('id')[1:]
     brand_href = domain + brand_tag.a['href']
     print(brand_name,brand_id,brand_href)
-    get_car(brand_id)
+    get_car(brand_name,brand_id)
 
 
 main()
