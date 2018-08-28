@@ -70,7 +70,7 @@ def get_car(brand_name,brand_id):
 					# # 输出 Unicode 到文件
   
 					output_file.write(line)
-					output_file.write('\n')
+					output_file.write(',\n')
 					# car_all = get_car_detail(car['href'],car)
 					# return car_all
 					# print(cars)
