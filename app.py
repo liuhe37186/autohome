@@ -34,4 +34,9 @@ def main():
 
 main()
 
-xindishi_2018
+def test():
+    url='https://car.autohome.com.cn/price/series-4851.html'
+    url_1 = 'https://car.autohome.com.cn/price/series-3170-0-3-0-0-0-0-1.html'
+    get_car_type(url_1)
+
+# test()
