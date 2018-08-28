@@ -29,8 +29,9 @@ def main():
         brand_name  = brand_tag.get_text(',').split(',')[0]
         brand_id = brand_tag.get('id')[1:]
         brand_href = domain + brand_tag.a['href']
-        print(brand_name,brand_id,brand_href)
+        # print(brand_name,brand_id,brand_href)
         get_car(brand_name, brand_id)
 
 main()
 
+xindishi_2018

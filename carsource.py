@@ -9,7 +9,7 @@ import bs4
 from setting import headers, domain, start_url, file_output
 import json
 cars = []
-car = {}
+
 output_file = open(file_output, 'w+',encoding='utf-8')
 def get_car(brand_name,brand_id):
 	
@@ -27,6 +27,7 @@ def get_car(brand_name,brand_id):
 			# print(child.prettify())
 		
 			if isinstance(child,bs4.element.Tag):
+				car = {}
 				if child.name == 'dt':
 					land = child.get_text();
 				else:
@@ -79,7 +80,9 @@ def get_car_type(series_url):
 			for li in tag.find('ul').find_all('li'):
 				car_type={}
 				car_type['车型'] = li.find('div',class_='interval01-list-cars').p.get_text()
-				print(li.find('div',class_='interval01-list-cars').p.get_text())
+				# print(li.find('div',class_='interval01-list-cars').prettify())
+					# print(li.find('div',class_='interval01-list-cars').find('span',class_='interval01-list-cars-text').get_text())
+				# print(li.find('div',class_='interval01-list-cars').p.get_text())
 				for p in li.find('div',class_='interval01-list-cars').find_all('p'):
 					spanList=[]
 					spanStr={}
@@ -99,7 +102,7 @@ def get_car_type(series_url):
 				# print(car_type)
 				car_type_list.append(car_type)
 				# print(car_type_list)
-	print(car_type_list)
+	# print(car_type_list)
 	return car_type_list
 
 
