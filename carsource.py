@@ -87,10 +87,9 @@ def get_car_type(series_url):
 						for span in p.children: 
 							spanList.append(span.get_text())
                         # print(spanList)
-						if len(spanList) > 0:	
-							car_type['驱动']= spanList[0]
-						elif len(spanList) > 1:
-							car_type['变速箱'] = spanList[1]
+							car_type['配置'] = spanList
+						
+
                 # print(li.find('div',class_='interval01-list-cars').p.next_slibing)
                 # if li.find('div',class_='interval01-list-cars').p.span != None:
                     # print(li.find('div',class_='interval01-list-cars').p.span.get_text())
