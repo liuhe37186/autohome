@@ -119,42 +119,47 @@ def get_car_type(series_url):
 		for tag in car_details.children:
 			# print(tag.find('div',class_='interval01-list-cars').prettify())
 			# print(tag)
-			car_type={}
+			
 			engine=''
 			if isinstance(tag,bs4.element.Tag):
 				# print(tag.prettify())
 				# print(tag.find('span',class_='interval01-list-cars-text').get_text())
 				engine = tag.find('span',class_='interval01-list-cars-text').get_text()
-				car_type['发动机'] = engine
+				
 
 
 			if isinstance(tag.find('ul'),bs4.element.Tag):
 				for li in tag.find('ul').find_all('li'):
-					car_type['车型'] = li.find('div',class_='interval01-list-cars').p.get_text()
-					# print(li.find('div',class_='interval01-list-cars').prettify())
-						# print(li.find('div',class_='interval01-list-cars').find('span',class_='interval01-list-cars-text').get_text())
-					# print(li.find('div',class_='interval01-list-cars').p.get_text())
-					# print(li.prettify())
-					for p in li.find('div',class_='interval01-list-cars').find_all('p'):
-						spanList=[]
-						spanStr={}
-						if p.span != None:
-							for span in p.children: 
-								spanList.append(span.get_text())
-	                        # print(spanList)
-								car_type['配置'] = spanList
-							
 
-	                # print(li.find('div',class_='interval01-list-cars').p.next_slibing)
-	                # if li.find('div',class_='interval01-list-cars').p.span != None:
-	                    # print(li.find('div',class_='interval01-list-cars').p.span.get_text())
-					car_type['指导价']= li.find('div',class_='interval01-list-guidance').get_text()
-					# print(li.find('div',class_='interval01-list-guidance').get_text())
-					# print(car_type)
-					# print(car_type)
-					car_type_list.append(car_type)
+					if isinstance(li.find('div',class_='interval01-list-cars'),bs4.element.Tag):
+						for div in li.find('div',class_='interval01-list-cars').children:
+							car_type={}
+							car_type['类别'] = engine
+							car_type['车型'] = li.find('div',class_='interval01-list-cars').p.get_text()
+							# print(li.find('div',class_='interval01-list-cars').prettify())
+							# print(li.find('div',class_='interval01-list-cars').find('span',class_='interval01-list-cars-text').get_text())
+						# print(li.find('div',class_='interval01-list-cars').p.get_text())
+						# print(li.prettify())
+							for p in div.find_all('p'):
+								spanList=[]
+								spanStr={}
+								if p.span != None:
+									for span in p.children: 
+										spanList.append(span.get_text())
+		                        # print(spanList)
+										car_type['配置'] = spanList
+								
+
+		                # print(li.find('div',class_='interval01-list-cars').p.next_slibing)
+		                # if li.find('div',class_='interval01-list-cars').p.span != None:
+		                    # print(li.find('div',class_='interval01-list-cars').p.span.get_text())
+						car_type['指导价']= li.find('div',class_='interval01-list-guidance').get_text()
+						# print(li.find('div',class_='interval01-list-guidance').get_text())
+						# print(car_type)
+						# print(car_type)
+						car_type_list.append(car_type)
 					# print(car_type_list)
-		# print(car_type_list)
+		print(car_type_list)
 		# return car_type_list
 	        # 抓取结束，返回数据
 		if next_url == '':
