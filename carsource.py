@@ -130,8 +130,8 @@ def get_car_type(series_url):
 
 			if isinstance(tag.find('ul'),bs4.element.Tag):
 				for li in tag.find('ul').find_all('li'):
-
-					if isinstance(li.find('div',class_='interval01-list-cars'),bs4.element.Tag):
+					divs = li.find('div',class_='interval01-list-cars')
+					if divs != None:
 						for div in li.find('div',class_='interval01-list-cars').children:
 							car_type={}
 							car_type['类别'] = engine
